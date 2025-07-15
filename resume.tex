@@ -1,11 +1,12 @@
 %----------------------------------------------
-% Grant Achuzia's Latex Resume 
-% Author: Grant Achuzia
-% Inspired by: https://github.com/sb2nov/Resume
-% License: MIT
+% Grant Achuzia's Resume in Latex
+% Author : Grant Achuzia
+% Inspired by: https://github.com/sb2nov/resume
+% License : MIT
 %----------------------------------------------
 
-\documentclass[letterpaper, 1ppt]{article}
+\RequirePackage[]{latexrelease}
+\documentclass[letterpaper,11pt]{article}
 
 \usepackage{fontawesome5}
 \usepackage{latexsym}
@@ -19,8 +20,8 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-\input{glyphtounicode}
 
+% Custom font
 \usepackage[default]{lato}
 
 \pagestyle{fancy}
@@ -36,15 +37,17 @@
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
 
+\setlength{\footskip}{12pt}
+
 \urlstyle{same}
 
-\raggedbottom
-\raggedright
+\raggedbottom\relax
+\raggedright\relax
 \setlength{\tabcolsep}{0in}
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
+  \vspace{-4pt}\raggedright\large
 }{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
 
 % Ensure that generate pdf is machine readable/ATS parsable
@@ -53,28 +56,25 @@
 %-------------------------%
 % Custom commands
 \begin{document}
-\include{custom-commands}
+  \input{custom-commands}
 
-%-------------------------------------------%
-%%%%%%  RESUME STARTS HERE  %%%%%
+  %----------HEADING----------%
+  \input{src/heading}
 
-%----------HEADING----------%
-\input{src/heading}
+  %-----------EDUCATION-----------%
+  \input{src/education.tex}
 
-%-----------EDUCATION-----------%
-\input{src/education.tex}
+  %-----------EXPERIENCE-----------%
+  \input{src/experience}
 
-%-----------EXPERIENCE-----------%
-\input{src/experience}
+  %-----------PROJECTS-----------%
+  \input{src/projects}
 
-%-----------PROJECTS-----------%
-\input{src/projects}
+  %-----------ACTIVITIES-----------%
+  \input{src/activities}
 
-%-----------ACTIVITIES-----------%
-\input{src/activities}
-
-%-----------SKILLS-----------%
-\input{src/skills.tex}
+  %-----------SKILLS-----------%
+  \input{src/skills.tex}
 
 %-------------------------------------------%
 \end{document}

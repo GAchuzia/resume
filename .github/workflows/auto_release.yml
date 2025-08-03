@@ -2,45 +2,41 @@ name: Auto Release Resume
 
 on:
   push:
+    # only on semantic-version tags vX.Y.Z
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  build-and-release:
+  autorelease-on-version-bump:
     runs-on: ubuntu-latest
     steps:
-      # Checkout full history so we see tags
+      # 1) Checkout everything (including tags)
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # Verify tag matches VERSION file
-      - name: Check VERSION vs Tag
-        run: |
-          VERSION=$(cat VERSION)
-          TAG=${GITHUB_REF#refs/tags/v}
-          if [ "$VERSION" != "$TAG" ]; then
-            echo "::error::VERSION file ($VERSION) does not match tag ($TAG)"
-            exit 1
-          fi
-
-      # Generate a LaTeX include for \Version
+      # enerate src/version.tex from the Git tag
       - name: Generate version.tex
+        shell: bash
         run: |
-          echo "\\newcommand{\\Version}{$VERSION}" > src/version.tex
+          # strip off "refs/tags/" prefix
+          TAG=${GITHUB_REF#refs/tags/}
+          # write LaTeX macro
+          echo "\\newcommand{\\Version}{$TAG}" > src/version.tex
 
-      # Build with LaTeX
+      # Build PDF
       - name: Set up TeX Live
         uses: xu-cheng/latex-action@v2
         with:
           root_file: src/resume.tex
 
       - name: Compile Resume PDF
+        working-directory: src
         run: |
-          latexmk -pdf -cd -interaction=nonstopmode \
-            -outdir=build src/resume.tex
+          latexmk -pdf -interaction=nonstopmode \
+            -outdir=../build resume.tex
 
-      # Create GitHub Release
+      # Create GitHub release and attach
       - name: Create GitHub Release
         id: release
         uses: actions/create-release@v1
@@ -51,7 +47,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Upload PDF
       - name: Upload PDF asset
         uses: actions/upload-release-asset@v1
         with:

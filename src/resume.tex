@@ -37,6 +37,7 @@
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
 
+\setlength{\headheight}{14pt}
 \setlength{\footskip}{12pt}
 
 \urlstyle{same}
@@ -75,6 +76,14 @@
 
   %-----------SKILLS-----------%
   \input{skills.tex}
+  
+  \IfFileExists{version.tex}{
+    \input{version.tex}
+  }{
+    \newcommand{\Version}{0.0.0}
+  }
+
+  \fancyhead[L]{\textbf{Grant Achuzia — Resume v\Version}}
 
 %-------------------------------------------%
 \end{document}

@@ -18,15 +18,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # enerate src/version.tex from the Git tag
-      - name: Generate version.tex
-        shell: bash
-        run: |
-          # strip off "refs/tags/" prefix
-          TAG=${GITHUB_REF#refs/tags/}
-          # write LaTeX macro
-          echo "\\newcommand{\\Version}{$TAG}" > src/version.tex
-
       # Build PDF
       - name: Set up TeX Live
         uses: xu-cheng/latex-action@v2

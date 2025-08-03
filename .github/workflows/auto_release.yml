@@ -7,10 +7,7 @@ on:
 
 jobs:
   build-and-release:
-    strategy:
-      matrix:
-        os: [windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       # Checkout full history so we see tags
       - uses: actions/checkout@v3

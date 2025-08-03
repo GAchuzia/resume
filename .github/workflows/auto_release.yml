@@ -1,5 +1,8 @@
 name: Auto Release Resume
 
+permissions:
+  contents: write
+  
 on:
   push:
     # only on semantic-version tags vX.Y.Z

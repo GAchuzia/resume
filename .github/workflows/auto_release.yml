@@ -37,7 +37,7 @@ jobs:
 
       - name: Compile Resume PDF
         run: |
-          latexmk -pdf -interaction=nonstopmode \
+          latexmk -pdf -cd -interaction=nonstopmode \
             -outdir=build src/resume.tex
 
       # Create GitHub Release

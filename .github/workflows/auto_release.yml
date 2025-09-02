@@ -46,3 +46,7 @@ jobs:
           asset_content_type: application/pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# To trigger a release, create a tag with:
+# git tag vX.Y.Z
+# git push origin vX.Y.Z

@@ -20,6 +20,7 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
+\usepackage{lmodern} % Fix font shape errors for bold sans-serif and symbols
 
 % Custom font
 \usepackage[sfdefault]{inter}
@@ -57,25 +58,26 @@
 %-------------------------%
 % Custom commands
 \begin{document}
-  \input{custom-commands}
+\input{custom-commands}
 
-  %----------HEADING----------%
-  \input{heading}
+%----------HEADING----------%
+\input{heading}
 
-  %-----------EDUCATION-----------%
-  \input{education.tex}
+%-----------EDUCATION-----------%
+\input{education.tex}
 
-  %-----------EXPERIENCE-----------%
-  \input{experience}
+%-----------EXPERIENCE-----------%
+\input{experience}
 
-  %-----------PROJECTS-----------%
-  \input{projects}
+%-----------PROJECTS-----------%
+\input{projects}
 
-  %-----------ACTIVITIES-----------%
-  \input{activities}
+%-----------ACTIVITIES-----------%
+\input{activities}
 
-  %-----------SKILLS-----------%
-  \input{skills.tex}
+%-----------SKILLS-----------%
+\input{skills.tex}
 
 %-------------------------------------------%
 \end{document}
+

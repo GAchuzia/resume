@@ -9,7 +9,7 @@ on:
       - main
       - master
     paths:
-      - 'src/**'
+      - "src/**"
 
 jobs:
   update-readme:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Convert PDF to PNG
         run: |
-          convert -density 300 build/Resume_GrantAchuzia.pdf[0] -quality 90 resume.png
+          convert -density 300 build/Resume_GrantAchuzia.pdf[0] -background white -flatten -quality 90 resume.png
 
       # Update README
       - name: Update README
@@ -41,14 +41,14 @@ jobs:
           # Create images directory if it doesn't exist
           mkdir -p images
           mv resume.png images/resume.png
-          
+
           # Update README with image
           cat > README.md << 'EOF'
           # Grant Achuzia's [Resume](build/Resume_GrantAchuzia.pdf)
-          
-          ![Resume](images/resume.png)
-          
+
           My cumulative technical experiences summed in one page.
+
+          ![Resume](images/resume.png)
           EOF
 
       # Commit and push changes

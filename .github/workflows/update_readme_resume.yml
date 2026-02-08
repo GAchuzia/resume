@@ -33,7 +33,7 @@ jobs:
 
       - name: Convert PDF to PNG
         run: |
-          convert -density 300 build/Resume_GrantAchuzia.pdf[0] -background white -flatten -quality 90 resume.png
+          convert -density 300 -background white build/Resume_GrantAchuzia.pdf[0] -flatten -alpha remove -alpha off -quality 90 resume.png
 
       # Update README
       - name: Update README

@@ -1,5 +1,15 @@
 {
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
+    },
+    {
+      "name": "latexmk (anonymized)",
+      "tools": ["latexmk-anonymized"]
+    }
+  ],
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
@@ -13,12 +23,20 @@
         "-pdf",
         "%DOC%"
       ]
-    }
-  ],
-  "latex-workshop.latex.recipes": [
+    },
     {
-      "name": "latexmk",
-      "tools": ["latexmk"]
+      "name": "latexmk-anonymized",
+      "command": "latexmk",
+      "args": [
+        "-cd",
+        "-jobname=Resume_Anonymized",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=%OUTDIR%",
+        "-pdf",
+        "%DOC%"
+      ]
     }
   ],
   "latex-workshop.latex.autoBuild.run": "onSave",

@@ -43,3 +43,6 @@
 *blx.bib
 .bak 
 .mtc
+
+# Anonymized resume output
+src_anonymized/

@@ -1,5 +1,6 @@
 {
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build",
+  "latex-workshop.latex.rootFile.file": "src/resume.tex",
   "latex-workshop.latex.recipes": [
     {
       "name": "latexmk",
@@ -15,6 +16,7 @@
       "name": "latexmk",
       "command": "latexmk",
       "args": [
+        "-cd",
         "-jobname=Resume_GrantAchuzia",
         "-synctex=1",
         "-interaction=nonstopmode",
@@ -40,6 +42,5 @@
     }
   ],
   "latex-workshop.latex.autoBuild.run": "onSave",
-  "latex-workshop.view.pdf.viewer": "tab",
-  
+  "latex-workshop.view.pdf.viewer": "tab"
 }

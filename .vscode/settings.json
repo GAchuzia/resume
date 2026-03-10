@@ -5,10 +5,6 @@
     {
       "name": "latexmk",
       "tools": ["latexmk"]
-    },
-    {
-      "name": "latexmk (anonymized)",
-      "tools": ["latexmk-anonymized"]
     }
   ],
   "latex-workshop.latex.tools": [
@@ -18,20 +14,6 @@
       "args": [
         "-cd",
         "-jobname=Resume_GrantAchuzia",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-outdir=%OUTDIR%",
-        "-pdf",
-        "%DOC%"
-      ]
-    },
-    {
-      "name": "latexmk-anonymized",
-      "command": "latexmk",
-      "args": [
-        "-cd",
-        "-jobname=Resume_Anonymized",
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",

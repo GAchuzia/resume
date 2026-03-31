@@ -44,6 +44,3 @@
 .bak 
 .mtc
 .env
-
-# Anonymized resume output
-src_anonymized/

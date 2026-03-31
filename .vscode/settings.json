@@ -13,6 +13,8 @@
       "command": "latexmk",
       "args": [
         "-cd",
+        "-f",
+        "-g",
         "-jobname=Resume_GrantAchuzia",
         "-synctex=1",
         "-interaction=nonstopmode",
@@ -23,6 +25,7 @@
       ]
     }
   ],
-  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoBuild.interval": 1000,
   "latex-workshop.view.pdf.viewer": "tab"
 }

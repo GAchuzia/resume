@@ -20,10 +20,11 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-\usepackage{lmodern} % Fix font shape errors for bold sans-serif and symbols
-
-% Custom font
-\usepackage[sfdefault]{inter}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % symbol fallbacks; load before setting default sans
+% TeX Gyre Heros: clean neo-grotesque sans (Helvetica class), strong for resumes
+\usepackage{tgheros}
+\renewcommand{\familydefault}{\sfdefault}
 
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields

@@ -1,9 +1,7 @@
 %-------------------------%
 % Custom commands
 \newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+  \item\small #1
 }
 
 \newcommand{\resumeSubheading}[4]{
@@ -34,7 +32,8 @@
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
+% Uniform gaps between bullets (parsep/partopsep off; fixed itemsep avoids uneven nested-list glue)
+\newcommand{\resumeItemListStart}{\begin{itemize}[topsep=3pt, itemsep=4pt, parsep=0pt, partopsep=0pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 \definecolor{Black}{RGB}{0, 0, 0}

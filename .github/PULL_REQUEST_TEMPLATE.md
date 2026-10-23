@@ -6,7 +6,7 @@ What Problem Are You Solving? ("Closes Issue #XXXX")
 
 ## Type of Change
 
-- [ ] Nug Fix
+- [ ] Bug Fix
 - [ ] New Feature
 - [ ] Documentation Update
 

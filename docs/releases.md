@@ -39,3 +39,19 @@ Pushing a `vX.Y.Z` tag triggers **Auto Release Resume** (`.github/workflows/auto
 The tag always points to the current commit. You can also release an approved feature branch by checking it out before tagging; this does not merge it into `main` or update the PDF/preview on `main`. The release workflow builds the PDF directly from that branch's tagged source.
 
 Check both workflows in GitHub Actions. If a release fails, inspect the failed run before creating another tag; do not move or reuse published version tags.
+
+## Build
+
+With TeX Live (including `latexmk`) installed, run from the repository root:
+
+```sh
+latexmk -cd -pdf -interaction=nonstopmode -halt-on-error \
+  -jobname=Resume_GrantAchuzia -outdir=../build src/resume.tex
+```
+
+The PDF is written to `build/Resume_GrantAchuzia.pdf`. Edit the sections in `src/`;
+VS Code's LaTeX Workshop uses the same output name. On `main`, GitHub Actions
+rebuilds the PDF and preview together. Pushing a `vX.Y.Z` tag creates a PDF release.
+See [Updating and releasing the resume](docs/releases.md) for the steps.
+
+## Preview

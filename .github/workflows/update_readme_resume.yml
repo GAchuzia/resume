@@ -1,4 +1,4 @@
-name: Update README with Resume Image
+name: Update Resume PDF and Preview
 
 permissions:
   contents: write
@@ -10,52 +10,39 @@ on:
       - master
     paths:
       - "src/**"
+      - ".github/workflows/update_readme_resume.yml"
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Build PDF
       - name: Set up TeX Live
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: src/resume.tex
           work_in_root_file_dir: true
-          args: "-pdf -interaction=nonstopmode -outdir=../build"
+          args: "-pdf -interaction=nonstopmode -halt-on-error -jobname=Resume_GrantAchuzia -outdir=../build"
 
-      # Convert PDF to PNG
-      - name: Install ImageMagick
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - name: Install PDF tools
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
 
-      - name: Convert PDF to PNG
+      - name: Check PDF and generate preview
         run: |
-          convert -density 300 -background white build/Resume_GrantAchuzia.pdf[0] -flatten -alpha remove -alpha off -quality 90 resume.png
-
-      # Update README
-      - name: Update README
-        run: |
-          # Create images directory if it doesn't exist
+          test "$(pdfinfo build/Resume_GrantAchuzia.pdf | awk '/^Pages:/ {print $2}')" = 1
+          pdftotext build/Resume_GrantAchuzia.pdf - | grep -F 'grant.achuzia@gmail.com'
           mkdir -p images
-          mv resume.png images/resume.png
-
-          # Update README with image
-          cat > README.md << 'EOF'
-          # Grant Achuzia's [Resume](build/Resume_GrantAchuzia.pdf)
-
-          My cumulative technical experiences summed in one page.
-
-          ![Resume](images/resume.png)
-          EOF
+          pdftoppm -png -singlefile -scale-to 1800 build/Resume_GrantAchuzia.pdf images/resume
 
       # Commit and push changes
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md images/resume.png
-          git diff --staged --quiet || git commit -m "Update resume image in README"
+          git add build/Resume_GrantAchuzia.pdf images/resume.png
+          git diff --staged --quiet || git commit -m "Update resume PDF and preview"
           git push

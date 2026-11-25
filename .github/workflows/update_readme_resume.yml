@@ -10,6 +10,7 @@ on:
       - master
     paths:
       - "src/**"
+      - "scripts/tex_to_md.py"
       - ".github/workflows/update_readme_resume.yml"
 
 jobs:
@@ -38,11 +39,14 @@ jobs:
           mkdir -p images
           pdftoppm -png -singlefile -scale-to 1800 build/Resume_GrantAchuzia.pdf images/resume
 
+      - name: Generate Markdown resume
+        run: python3 scripts/tex_to_md.py
+
       # Commit and push changes
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add build/Resume_GrantAchuzia.pdf images/resume.png
+          git add build/Resume_GrantAchuzia.pdf build/Resume_GrantAchuzia.md images/resume.png
           git diff --staged --quiet || git commit -m "Update resume PDF and preview"
           git push
